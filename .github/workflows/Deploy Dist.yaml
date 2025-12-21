@@ -63,7 +63,7 @@ jobs:
           - name: Deploy Dist
             run: | 
               echo 'deploying below files'
-              ls dist
+#              ls dist
               echo 'Deployment completed'
 
 
