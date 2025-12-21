@@ -12,7 +12,7 @@ on:
 jobs:
     test:  # name of job
         runs-on: ubuntu-latest
-        steps:
+        steps:  # tasks
             - name: Get Code  # name of task
               uses: actions/checkout@v4
     #           run: |
