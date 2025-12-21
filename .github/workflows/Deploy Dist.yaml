@@ -26,29 +26,31 @@ jobs:
     #           uses: ./.github/actions/setupnode
               with: 
                 node-version: 22
-            - name: print node version    
-              run: node -v
             - name: Install Dependencies
               run: npm install    
             - name: Run Tests
               run: npm run test   
-            - name: Completed job
-              run: echo "Test job was successful"
-    # build:    
-    #     needs: test
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #       - name: Get Code
-    #         uses: actions/checkout@v4
-    #       - name: Setup Node and install depencencies
-    #         uses: ./.github/actions/setupnode
-    #       - name: build project
-    #         run: npm run build   
-    #       - name: Upload dist artifact  
-    #         uses: actions/upload-artifact@v4
-    #         with: 
-    #             name: dist-files
-    #             path: dist
+    build:    
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+          - name: Get Code
+            uses: actions/checkout@v4
+          - name: Setup Node js
+            uses: actions/setup-node@v4
+            with: 
+              node-version: 22
+          # - name: Setup Node and install depencencies
+          #   uses: ./.github/actions/setupnode
+          - name: Install Dependencies
+            run: npm install    
+          - name: build project
+            run: npm run build   
+          # - name: Upload dist artifact  
+          #   uses: actions/upload-artifact@v4
+          #   with: 
+          #       name: dist-files
+          #       path: dist
     # deploy:
     #     needs: build
     #     runs-on: ubuntu-latest
