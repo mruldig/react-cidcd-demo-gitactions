@@ -1,4 +1,4 @@
-name: Deploy Dist folder
+name: Deploy Dist folder 
 # on: [push,workflow_dispatch]
 on: 
      push:
