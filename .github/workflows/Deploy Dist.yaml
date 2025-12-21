@@ -14,18 +14,26 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Get Code  # name of task
-            #  uses: actions/checkout@v4
-              run: |
-                echo "Cloning repo"
-                echo "${{toJson(github)}}"
-                git clone https://github.com/${{github.repository}}.git myfiles
-                cd myfiles && ls
-    #         - name: Setup Node and install depencencies
+              uses: actions/checkout@v4
+    #           run: |
+    #             echo "Cloning repo"
+    #             echo "${{toJson(github)}}"
+    #             git clone https://github.com/${{github.repository}}.git myfiles
+    #             cd myfiles && ls
+            - name: Setup Node js
+              uses: actions/setup-node@v4
+    # #         - name: Setup Node and install depencencies
     #           uses: ./.github/actions/setupnode
-    #           with: 
-    #              node-version: 20
-    #         - name: Run Tests
-    #           run: npm run test   
+              with: 
+                node-version: 22
+            - name: print node version    
+              run: node -v
+            - name: Install Dependencies
+              run: npm install    
+            - name: Run Tests
+              run: npm run test   
+            - name: Completed job
+              run: echo "Test job was successful"
     # build:    
     #     needs: test
     #     runs-on: ubuntu-latest
